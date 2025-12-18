@@ -1,7 +1,9 @@
-#define MAXSTACK 100
 typedef char StackEntry;
+#define LIMITED_MEMORY
 
 /*------------ Linked Based----------*/
+
+#ifndef LIMITED_MEMORY
 
 typedef struct stackNode {
   StackEntry entry;
@@ -15,13 +17,18 @@ typedef struct stack {
 
 } Stack;
 
-/*-------- Array Based---------
+#else 
+
+/*-------- Array Based---------*/
+
+#define MAXSTACK 100
+
 typedef struct stack {
   int top;
   StackEntry entry[MAXSTACK];
 
 } Stack;
-*/
+#endif
 
 void Push(StackEntry, Stack *);
 void Pop(StackEntry *, Stack *);
