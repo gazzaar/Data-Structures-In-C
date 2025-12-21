@@ -1,8 +1,9 @@
-#define MAXQUEUE 10
-
+#define LIMITED_MEMORY
 typedef char QueueEntry;
 
-/* -------- Queue Linked Implementaion --------------*/
+#ifndef LIMITED_MEMORY
+
+/* -------------- Queue Linked Implementaion --------------*/
 typedef struct queueNode {
   QueueEntry entry;
   struct queueNode *next;
@@ -15,6 +16,21 @@ typedef struct queue {
   int size;
 
 } Queue;
+
+#else 
+
+/* -------------- Array Based Implementaion --------------*/
+#define MAXQUEUE 10
+
+typedef struct queue{
+  QueueEntry entry[MAXQUEUE];
+  int front;
+  int rear;
+  int size;
+
+}Queue ;
+
+#endif
 
 void CreateQueue(Queue *);
 void Append(QueueEntry, Queue *);
